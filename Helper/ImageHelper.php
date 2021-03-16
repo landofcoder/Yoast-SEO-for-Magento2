@@ -12,14 +12,19 @@ class ImageHelper
      */
     protected $storeManager;
 
+    protected $_request;
+
     /**
      * ImageHelper constructor.
      * @param StoreManagerInterface $storeManager
+     * @param \Magento\Framework\App\Request\Http $request
      */
     public function __construct(
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        \Magento\Framework\App\Request\Http $request
     ) {
         $this->storeManager = $storeManager;
+        $this->_request = $request;
     }
 
     /**
@@ -56,9 +61,13 @@ class ImageHelper
         $baseUrl = $this->storeManager->getStore()->getBaseUrl(
             UrlInterface::URL_TYPE_MEDIA
         );
-
         $image = ltrim($image, '/');
-
+        if ($this->_request->getFullActionName() == 'catalog_product_view') {
+            return $baseUrl . 'catalog/product/' . $image;
+        }
+        if ($this->_request->getFullActionName() == 'catalog_category_view') {
+            return $baseUrl . 'catalog/category/' . $image;
+        }
         return $baseUrl . 'yoast/img/' . $image;
     }
 }

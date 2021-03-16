@@ -15,6 +15,8 @@ use Magento\Review\Model\ReviewFactory;
 use Magento\Review\Model\ResourceModel\Review\Collection as ReviewCollection;
 use Magento\Review\Model\ResourceModel\Review\CollectionFactory as ReviewCollectionFactory;
 
+use Magento\Store\Model\ScopeInterface;
+
 class Product extends AbstractProduct
 {
 
@@ -79,9 +81,28 @@ class Product extends AbstractProduct
             'offers' => $this->getOffer(),
             'review' => $this->getReviews()
         ];
+        $additional2 = [];
+        $company_name = $this->getConfig("general/company_name");
+        if($company_name) {
+            $additional2 = [
+                'brand' => [
+                    '@type' => "Thing",
+                    'name' => $company_name
+                ]
+            ];
+        }
         $schema = array_merge($schema, array_filter($additional));
-
+        if($additional2) {
+            $schema = array_merge($schema, array_filter($additional2));
+        }
         return json_encode($schema);
+    }
+
+    public function getConfig($path = ""){
+        $this->_scopeConfig->getValue(
+            'yoastseo/'.$path,
+            ScopeInterface::SCOPE_STORES
+        );
     }
 
     /**

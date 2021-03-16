@@ -7,12 +7,12 @@ use Magento\Framework\Api\SearchResultsInterface;
 interface AnalysisTemplateSearchResultsInterface extends SearchResultsInterface
 {
     /**
-     * @return \MaxServ\YoastSEO\Api\Data\AnalysisTemplateInterface[]
+     * @return mixed
      */
     public function getItems();
 
     /**
-     * @param \MaxServ\YoastSEO\Api\Data\AnalysisTemplateInterface[] $items
+     * @param mixed $items
      * @return $this
      */
     public function setItems(array $items);

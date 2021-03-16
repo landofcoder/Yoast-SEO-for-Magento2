@@ -1,3 +1,8 @@
+<?php
+$_request = $this->getRequest();
+$isAjax = $_request->getParam("isAjax");
+if(!$isAjax){
+?>
 <div class="yoastScore-wrapper" data-bind="scope: 'yoastScore'">
     <div class="yoastScore-header">
         <span><strong><?php echo __('SEO Score'); ?></strong></span>
@@ -26,3 +31,4 @@
         }
     }
 </script>
+<?php } ?>
