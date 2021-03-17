@@ -294,11 +294,14 @@ class UpgradeData implements UpgradeDataInterface
         $this->eavSetup->addAttribute($entityTypeId, 'yoast_facebook_image', [
             'type' => 'varchar',
             'label' => 'Yoast Facebook Image',
-            'frontend' => 'Magento\Catalog\Model\Product\Attribute\Frontend\Image',
-            'input' => 'media_image',
+            'backend' => 'Magento\Catalog\Model\Category\Attribute\Backend\Image',
+            'input' => 'image',
             'global' => 'store',
             'group' => 'Search Engine Optimization',
-            'required' => false
+            'required' => false,
+            'source' => '',
+            'user_defined' => false,
+            'default' => null,
         ]);
 
         $this->eavSetup->addAttribute($entityTypeId, 'yoast_twitter_title', [
@@ -322,11 +325,14 @@ class UpgradeData implements UpgradeDataInterface
         $this->eavSetup->addAttribute($entityTypeId, 'yoast_twitter_image', [
             'type' => 'varchar',
             'label' => 'Yoast Twitter Image',
-            'frontend' => 'Magento\Catalog\Model\Product\Attribute\Frontend\Image',
-            'input' => 'media_image',
+            'backend' => 'Magento\Catalog\Model\Category\Attribute\Backend\Image',
+            'input' => 'image',
             'global' => 'store',
             'group' => 'Search Engine Optimization',
-            'required' => false
+            'required' => false,
+            'source' => '',
+            'user_defined' => false,
+            'default' => null,
         ]);
     }
 }
